@@ -31,13 +31,13 @@ export function DreamCard({ dream }: DreamCardProps) {
       initial={{ opacity: 0, y: 24 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.5 }}
-      whileHover={{ scale: 1.03 }}
+      whileHover={{ scale: 1.02, y: -4 }}
       whileTap={{ scale: 0.98 }}
     >
       <Card
         role="button"
         tabIndex={0}
-        className="relative flex h-full cursor-pointer flex-col gap-4 overflow-hidden border border-border-dream/30 bg-bg-dream-700/40 p-6 backdrop-blur-md transition-all duration-300 hover:-translate-y-2 hover:border-accent-purple/60 hover:bg-bg-dream-700/60 hover:shadow-dream-lg"
+        className="relative flex h-full cursor-pointer flex-col gap-4 overflow-hidden border border-border-dream/40 bg-bg-dream-700/50 p-6 backdrop-blur-md transition-all duration-300 hover:border-accent-purple/60 hover:shadow-dream-lg"
         onClick={() => router.push(`/dream/${dream.id}`)}
         onKeyDown={(event) => {
           if (event.key === "Enter") {
@@ -45,8 +45,7 @@ export function DreamCard({ dream }: DreamCardProps) {
           }
         }}
       >
-        <div className="absolute -right-10 -top-10 h-40 w-40 rounded-full bg-accent-purple/10 blur-2xl" />
-        <div className="relative flex items-center justify-between text-xs text-text-dream-400">
+        <div className="flex items-start justify-between">
           <span className="text-3xl">
             {emotionIcons[dream.emotion ?? ""] ?? "🌌"}
           </span>
@@ -57,13 +56,13 @@ export function DreamCard({ dream }: DreamCardProps) {
             })}
           </span>
         </div>
-        <div className="relative text-lg font-semibold text-text-dream-50">
+        <div className="text-lg font-semibold text-text-dream-50">
           {dream.title}
         </div>
-        <p className="relative line-clamp-2 text-sm text-text-dream-400">
+        <p className="line-clamp-2 text-sm leading-relaxed text-text-dream-400">
           {dream.description}
         </p>
-        <div className="relative flex items-center gap-1 text-accent-purple">
+        <div className="flex items-center gap-1 text-accent-purple">
           {Array.from({ length: clarityStars }).map((_, index) => (
             <FaStar key={`${dream.id}-star-${index}`} className="text-sm" />
           ))}

@@ -13,18 +13,21 @@ export default async function Home() {
 
   return (
     <PageShell>
-      <div className="space-y-16">
-        <section className="py-14 text-center">
-          <h1 className="text-4xl font-extrabold text-transparent md:text-5xl bg-gradient-to-br from-accent-purple to-accent-pink bg-clip-text">
-            ✨ Раскройте смысл ваших снов
-          </h1>
-          <p className="mx-auto mt-4 max-w-2xl text-base text-text-dream-400">
+      <div className="space-y-20">
+        <section className="py-16 text-center">
+          <div className="flex items-center justify-center gap-3">
+            <span className="text-4xl">🧩</span>
+            <h1 className="text-4xl font-extrabold text-accent-pink md:text-5xl">
+              Раскройте смысл ваших снов
+            </h1>
+          </div>
+          <p className="mx-auto mt-5 max-w-2xl text-base leading-relaxed text-text-dream-400">
             Записывайте сны и получайте мгновенный AI-анализ с интерпретацией
             символов и психологическим смыслом
           </p>
-          <div className="mt-8 flex justify-center">
+          <div className="mt-10 flex justify-center">
             <Link href="/dream/new">
-              <Button className="px-10 py-4 text-base font-semibold shadow-dream-lg">
+              <Button className="px-10 py-3 text-sm font-semibold shadow-dream-lg">
                 🌙 Начать сейчас
               </Button>
             </Link>
