@@ -1,6 +1,5 @@
 import Link from "next/link";
-import { RiMoonClearLine } from "react-icons/ri";
-import { RiStarsLine } from "react-icons/ri";
+import { RiMoonClearLine, RiStarLine } from "react-icons/ri";
 
 export function Header() {
   return (
@@ -19,7 +18,7 @@ export function Header() {
         </div>
       </Link>
       <div className="hidden items-center gap-2 text-text-secondary md:flex">
-        <RiStarsLine className="text-lg text-accent-secondary" />
+        <RiStarLine className="text-lg text-accent-secondary" />
         <span className="text-sm">Ночная аналитика</span>
       </div>
     </header>
