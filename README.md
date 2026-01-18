@@ -1,49 +1,45 @@
-# Next.js + Prisma + Neon (PostgreSQL)
+# DreamDecode — дневник снов с AI анализом
 
-Минимальный рабочий проект на Next.js (App Router) с Prisma и NeonDB.
-Главная страница читает заметки из PostgreSQL и отображает их.
+Полный проект на Next.js (App Router) + Prisma + NeonDB с тёмной ночной темой, аналитикой и AI анализом снов.
+
+## Стек
+
+- Next.js (TypeScript, App Router)
+- Prisma ORM
+- NeonDB (PostgreSQL)
+- Tailwind CSS
+- Framer Motion
+- React Icons
+- OpenRouter API
 
 ## Быстрый старт
 
-### 1) Создание проекта
+### 1) Установка зависимостей
 
 ```powershell
-npx create-next-app@latest . --ts --app --eslint --use-npm --no-tailwind --yes
-npm install prisma @prisma/client
-npx prisma init --datasource-provider postgresql
+npm install
 ```
 
 ### 2) Переменные окружения
 
-Создайте файл `.env` на основе `.env.example`:
+Создайте `.env` на основе `.env.example` и заполните:
+
+- `DATABASE_URL` — pooled connection string из Neon
+- `DIRECT_URL` — direct connection string для миграций
+- `OPENROUTER_API_KEY` — ключ OpenRouter
 
 ```powershell
 Copy-Item .env.example .env
 ```
 
-И вставьте строку подключения Neon в `DATABASE_URL`.
-
-
-### 3) Prisma схема
-
-Файл `prisma/schema.prisma` уже содержит модель `Note`:
-
-```prisma
-model Note {
-  id        String   @id @default(uuid()) @db.Uuid
-  title     String
-  createdAt DateTime @default(now())
-}
-```
-
-### 4) Миграция и seed
+### 3) Миграции и seed
 
 ```powershell
 npx prisma migrate dev --name init
 npm run db:seed
 ```
 
-### 5) Запуск
+### 4) Запуск
 
 ```powershell
 npm run dev
@@ -53,8 +49,8 @@ npm run dev
 
 ## Деплой на Vercel
 
-1) Добавьте переменную окружения `DATABASE_URL` в настройках проекта на Vercel.
-2) Выполните миграции:
+1) Добавьте `DATABASE_URL`, `DIRECT_URL`, `OPENROUTER_API_KEY` в Vercel.
+2) Примените миграции:
 
 ```powershell
 npm run db:migrate
@@ -62,12 +58,39 @@ npm run db:migrate
 
 ## Полезные команды
 
-- `npm run db:migrate` — применить миграции в проде (Vercel).
+- `npm run db:migrate` — применить миграции в проде.
 - `npm run db:seed` — заполнить БД тестовыми данными.
+
+## Структура
+
+```
+src/
+  app/
+    page.tsx
+    dream/new/page.tsx
+    dream/[id]/page.tsx
+    analytics/page.tsx
+    api/analyze/route.ts
+  components/
+    ui/
+    dreams/
+    analytics/
+    layout/
+  lib/
+    prisma.ts
+    ai.ts
+    dreams.ts
+  actions/
+    dreams.ts
+  types/
+    index.ts
+```
 
 ## Где смотреть код
 
 - `prisma/schema.prisma` — схема Prisma.
-- `prisma/seed.js` — минимальный seed.
-- `lib/prisma.ts` — Prisma Client.
-- `app/page.tsx` — запрос к БД на главной странице.
+- `prisma/migrations` — миграции.
+- `prisma/seed.js` — тестовые данные.
+- `src/actions/dreams.ts` — Server Actions.
+- `src/app/api/analyze/route.ts` — OpenRouter анализ.
+- `src/app/page.tsx` — дашборд.
