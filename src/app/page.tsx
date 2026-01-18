@@ -13,8 +13,8 @@ export default async function Home() {
 
   return (
     <PageShell>
-      <div className="space-y-12">
-        <section className="py-10 text-center">
+      <div className="space-y-16">
+        <section className="py-14 text-center">
           <h1 className="text-4xl font-extrabold text-transparent md:text-5xl bg-gradient-to-br from-accent-purple to-accent-pink bg-clip-text">
             ✨ Раскройте смысл ваших снов
           </h1>

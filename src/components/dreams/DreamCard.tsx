@@ -37,7 +37,7 @@ export function DreamCard({ dream }: DreamCardProps) {
       <Card
         role="button"
         tabIndex={0}
-        className="relative flex h-full cursor-pointer flex-col gap-4 overflow-hidden border border-border-dream/40 bg-bg-dream-700/40 p-6 backdrop-blur-md transition-all duration-300 hover:-translate-y-2 hover:border-accent-purple/60 hover:bg-bg-dream-700/60 hover:shadow-dream-lg"
+        className="relative flex h-full cursor-pointer flex-col gap-4 overflow-hidden border border-border-dream/30 bg-bg-dream-700/40 p-6 backdrop-blur-md transition-all duration-300 hover:-translate-y-2 hover:border-accent-purple/60 hover:bg-bg-dream-700/60 hover:shadow-dream-lg"
         onClick={() => router.push(`/dream/${dream.id}`)}
         onKeyDown={(event) => {
           if (event.key === "Enter") {
@@ -47,13 +47,15 @@ export function DreamCard({ dream }: DreamCardProps) {
       >
         <div className="absolute -right-10 -top-10 h-40 w-40 rounded-full bg-accent-purple/10 blur-2xl" />
         <div className="relative flex items-center justify-between text-xs text-text-dream-400">
-          <span>
+          <span className="text-3xl">
+            {emotionIcons[dream.emotion ?? ""] ?? "🌌"}
+          </span>
+          <span className="rounded-md bg-accent-purple/10 px-2 py-1 text-[11px] text-text-dream-400">
             {dateValue.toLocaleDateString("ru-RU", {
               day: "2-digit",
               month: "short",
             })}
           </span>
-          <span className="text-3xl">{emotionIcons[dream.emotion ?? ""] ?? "🌌"}</span>
         </div>
         <div className="relative text-lg font-semibold text-text-dream-50">
           {dream.title}
