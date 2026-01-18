@@ -1,5 +1,8 @@
 import { PrismaClient } from "@prisma/client";
 
+// Force binary engine to avoid Prisma Client "client" engine requirements.
+process.env.PRISMA_CLIENT_ENGINE_TYPE ??= "binary";
+
 const globalForPrisma = globalThis as unknown as {
   prisma?: PrismaClient;
 };
