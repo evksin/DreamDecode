@@ -4,10 +4,11 @@
 
 :root {
   --bg-dream-900: #0a0a1a;
-  --bg-dream-800: #1e1b4b;
-  --bg-dream-700: #2a1d5c;
+  --bg-dream-800: #1a1530;
+  --bg-dream-700: #2d1d4e;
   --accent-purple: #a78bfa;
   --accent-pink: #ec4899;
+  --accent-blue: #3b82f6;
   --text-dream-50: #e2e8f0;
   --text-dream-400: #b0b3c1;
   --border-dream: #3d3b5c;
@@ -24,7 +25,7 @@ body {
   font-family: var(--font-inter), system-ui, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  background: linear-gradient(135deg, #0a0a1a 0%, #1a0a2e 100%);
+  background: linear-gradient(135deg, #0a0a1a 0%, #1a0a2e 50%, #16213e 100%);
 }
 
 * {

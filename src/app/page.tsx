@@ -1,56 +1,46 @@
 import Link from "next/link";
-import { MdBedtime } from "react-icons/md";
 import { PageShell } from "@/components/layout/PageShell";
 import { Button } from "@/components/ui/Button";
 import { Card } from "@/components/ui/Card";
 import { DreamCard } from "@/components/dreams/DreamCard";
-import { getDreamAnalytics, getDreams } from "@/lib/dreams";
-import { MonthlyChart } from "@/components/analytics/MonthlyChart";
+import { getDreams } from "@/lib/dreams";
 
 export const dynamic = "force-dynamic";
 export const runtime = "nodejs";
 
 export default async function Home() {
   const dreams = await getDreams(8, 0);
-  const analytics = await getDreamAnalytics();
 
   return (
-    <PageShell
-      rightPanel={
-        <div className="space-y-6">
-          <Card className="space-y-3">
-            <div className="text-sm font-semibold text-text-dream-50">
-              Паттерны 7 дней
-            </div>
-            <div className="space-y-2 text-xs text-text-dream-400">
-              {analytics.topSymbols.slice(0, 3).map((symbol) => (
-                <div key={symbol.name} className="flex justify-between">
-                  <span>{symbol.name}</span>
-                  <span>{symbol.frequency}x</span>
-                </div>
-              ))}
-              {analytics.topSymbols.length === 0 ? (
-                <div>Нет данных</div>
-              ) : null}
-            </div>
-          </Card>
-          <Card>
-            <div className="text-sm font-semibold text-text-dream-50">
-              Настроение недели
-            </div>
-            <MonthlyChart data={analytics.monthlySeries.slice(-7)} />
-          </Card>
-        </div>
-      }
-    >
-      <div className="space-y-8">
-        <section className="space-y-4">
-          <div className="flex items-center justify-between">
-            <h2 className="text-lg font-semibold text-text-dream-50">
-              Последние сны
+    <PageShell>
+      <div className="space-y-12">
+        <section className="py-10 text-center">
+          <h1 className="text-4xl font-extrabold text-transparent md:text-5xl bg-gradient-to-br from-accent-purple to-accent-pink bg-clip-text">
+            ✨ Раскройте смысл ваших снов
+          </h1>
+          <p className="mx-auto mt-4 max-w-2xl text-base text-text-dream-400">
+            Записывайте сны и получайте мгновенный AI-анализ с интерпретацией
+            символов и психологическим смыслом
+          </p>
+          <div className="mt-8 flex justify-center">
+            <Link href="/dream/new">
+              <Button className="px-10 py-4 text-base font-semibold shadow-dream-lg">
+                🌙 Начать сейчас
+              </Button>
+            </Link>
+          </div>
+        </section>
+
+        <section className="space-y-6">
+          <div className="flex flex-col items-start justify-between gap-4 md:flex-row md:items-center">
+            <h2 className="text-2xl font-bold text-text-dream-50">
+              📚 Последние сны
             </h2>
-            <Link href="/analytics" className="text-sm text-accent-purple">
-              Смотреть аналитику
+            <Link
+              href="/dreams"
+              className="flex items-center gap-2 text-sm font-semibold text-accent-purple transition-all duration-300 hover:text-accent-pink"
+            >
+              Все сны →
             </Link>
           </div>
           {dreams.length ? (
@@ -60,16 +50,16 @@ export default async function Home() {
               ))}
             </div>
           ) : (
-            <Card className="flex flex-col items-center gap-4 py-10 text-center">
-              <MdBedtime className="text-4xl text-accent-purple" />
-              <div className="text-base font-semibold text-text-dream-50">
+            <Card className="flex flex-col items-center gap-4 py-16 text-center">
+              <div className="text-6xl opacity-50">🌙</div>
+              <div className="text-xl font-semibold text-text-dream-50">
                 Пока нет снов. Добавьте первый!
               </div>
+              <p className="text-sm text-text-dream-400">
+                Ваши сны будут отображаться здесь.
+              </p>
               <Link href="/dream/new">
-                <Button className="flex items-center gap-2 px-6 py-3">
-                  <MdBedtime />
-                  Записать сон
-                </Button>
+                <Button className="px-8 py-3">+ Записать</Button>
               </Link>
             </Card>
           )}

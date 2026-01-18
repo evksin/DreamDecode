@@ -1,30 +1,44 @@
 import Link from "next/link";
-import { MdBedtime } from "react-icons/md";
 import { Button } from "@/components/ui/Button";
 
 export function Header() {
   return (
-    <header className="w-full bg-gradient-to-br from-[#1E1B4B] to-[#2A1D5C] px-4 py-6 md:px-8">
-      <div className="mx-auto flex max-w-6xl flex-wrap items-center justify-between gap-4">
+    <header className="sticky top-0 z-50 w-full border-b border-border-dream bg-gradient-to-br from-bg-dream-800 to-bg-dream-700 shadow-dream-sm">
+      <div className="mx-auto flex max-w-[1400px] flex-wrap items-center justify-between gap-4 px-6 py-5">
         <Link href="/" className="flex items-center gap-3">
-          <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-bg-dream-800 text-accent-purple">
-            <MdBedtime className="text-2xl" />
-          </div>
-          <div>
-            <div className="text-xl font-semibold tracking-tight text-text-dream-50">
-              DreamDecode
-            </div>
-            <div className="text-sm text-text-dream-400">
-              Следите за снами и получайте AI-анализ
-            </div>
+          <div className="text-2xl">🌙</div>
+          <div className="text-2xl font-bold text-text-dream-50 transition-all duration-300 hover:text-accent-purple">
+            DreamDecode
           </div>
         </Link>
-        <Link href="/dream/new" className="w-full md:w-auto">
-          <Button className="flex w-full items-center justify-center gap-2 md:w-auto">
-            <MdBedtime className="text-lg" />
-            Записать сон
-          </Button>
-        </Link>
+        <nav className="flex flex-wrap items-center gap-6 text-sm text-text-dream-400">
+          <Link
+            href="/"
+            className="group relative transition-all duration-300 hover:text-accent-purple"
+          >
+            Главная
+            <span className="absolute -bottom-2 left-0 h-0.5 w-0 bg-accent-purple transition-all duration-300 group-hover:w-full" />
+          </Link>
+          <Link
+            href="/dreams"
+            className="group relative transition-all duration-300 hover:text-accent-purple"
+          >
+            Мои сны
+            <span className="absolute -bottom-2 left-0 h-0.5 w-0 bg-accent-purple transition-all duration-300 group-hover:w-full" />
+          </Link>
+          <Link
+            href="/analytics"
+            className="group relative transition-all duration-300 hover:text-accent-purple"
+          >
+            Аналитика
+            <span className="absolute -bottom-2 left-0 h-0.5 w-0 bg-accent-purple transition-all duration-300 group-hover:w-full" />
+          </Link>
+          <Link href="/dream/new" className="w-full md:w-auto">
+            <Button className="flex items-center gap-2">
+              + Записать
+            </Button>
+          </Link>
+        </nav>
       </div>
     </header>
   );
