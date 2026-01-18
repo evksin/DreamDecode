@@ -19,10 +19,16 @@ const PROMPT = `Ты — эксперт в психологии снов, аст
   "recommendations": "что это может означать"
 }`;
 
-const openai = new OpenAI({
-  apiKey: process.env.OPENROUTER_API_KEY,
-  baseURL: "https://openrouter.ai/api/v1",
-});
+function getOpenAIClient() {
+  const apiKey = process.env.OPENROUTER_API_KEY;
+  if (!apiKey) {
+    throw new Error("OPENROUTER_API_KEY не задан.");
+  }
+  return new OpenAI({
+    apiKey,
+    baseURL: "https://openrouter.ai/api/v1",
+  });
+}
 
 function safeParseJson(payload: string): AnalysisResult | null {
   try {
@@ -39,7 +45,8 @@ export async function analyzeDream(params: {
 }): Promise<AnalysisResult> {
   const { description, emotion, clarity } = params;
 
-  const response = await openai.chat.completions.create({
+  const client = getOpenAIClient();
+  const response = await client.chat.completions.create({
     model: "openrouter/auto",
     messages: [
       { role: "system", content: PROMPT },
