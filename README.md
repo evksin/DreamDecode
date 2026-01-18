@@ -23,10 +23,6 @@ Copy-Item .env.example .env
 
 И вставьте строку подключения Neon в `DATABASE_URL`.
 
-Если видите ошибку Prisma про engine type `client`, добавьте:
-```
-PRISMA_CLIENT_ENGINE_TYPE="binary"
-```
 
 ### 3) Prisma схема
 
@@ -58,7 +54,6 @@ npm run dev
 ## Деплой на Vercel
 
 1) Добавьте переменную окружения `DATABASE_URL` в настройках проекта на Vercel.
-2) Если Prisma ругается на engine type `client`, добавьте `PRISMA_CLIENT_ENGINE_TYPE=binary`.
 2) Выполните миграции:
 
 ```powershell
