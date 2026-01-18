@@ -10,14 +10,17 @@ import {
   XAxis,
   YAxis,
   Tooltip,
-  TooltipProps,
 } from "recharts";
 
 function ChartTooltip({
   active,
   payload,
   label,
-}: TooltipProps<number, string>) {
+}: {
+  active?: boolean;
+  payload?: Array<{ value?: number }>;
+  label?: string | number;
+}) {
   if (!active || !payload?.length) return null;
   return (
     <div className="rounded-lg border border-border-dream bg-bg-dream-800 px-3 py-2 text-xs text-text-dream-50 shadow-lg">
