@@ -6,6 +6,9 @@ import { DreamAnalysis } from "@/components/dreams/DreamAnalysis";
 import { getDreamById } from "@/lib/dreams";
 import { DeleteDreamButton } from "@/components/dreams/DeleteDreamButton";
 
+export const dynamic = "force-dynamic";
+export const runtime = "nodejs";
+
 type DreamPageProps = {
   params: { id: string };
 };

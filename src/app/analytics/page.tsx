@@ -4,6 +4,9 @@ import { MonthlyChart } from "@/components/analytics/MonthlyChart";
 import { SymbolCloud } from "@/components/analytics/SymbolCloud";
 import { getDreamAnalytics } from "@/lib/dreams";
 
+export const dynamic = "force-dynamic";
+export const runtime = "nodejs";
+
 export default async function AnalyticsPage() {
   const analytics = await getDreamAnalytics();
 
