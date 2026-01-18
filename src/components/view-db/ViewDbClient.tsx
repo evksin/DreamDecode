@@ -169,6 +169,21 @@ export function ViewDbClient() {
   const [rowEdits, setRowEdits] = useState<FieldValues>({});
   const [sortColumn, setSortColumn] = useState<string | null>(null);
   const [sortDirection, setSortDirection] = useState<"asc" | "desc">("asc");
+  const [isLocalHost, setIsLocalHost] = useState(true);
+
+  useEffect(() => {
+    setIsLocalHost(
+      typeof window !== "undefined" &&
+        (window.location.hostname === "localhost" ||
+          window.location.hostname === "127.0.0.1")
+    );
+  }, []);
+
+  useEffect(() => {
+    if (!isLocalHost && target === "local") {
+      setTarget("prod");
+    }
+  }, [isLocalHost, target]);
 
   useEffect(() => {
     startTransition(async () => {
@@ -474,14 +489,21 @@ export function ViewDbClient() {
           <p className="dream-description">
             Выберите базу данных для просмотра.
           </p>
+          {!isLocalHost ? (
+            <p className="dream-description" style={{ marginTop: "8px" }}>
+              Локальная база доступна только в режиме разработки (localhost).
+            </p>
+          ) : null}
           <div className="emotion-chips">
-            <button
-              type="button"
-              onClick={() => setTarget("local")}
-              className={`emotion-chip ${target === "local" ? "active" : ""}`}
-            >
-              Локальная
-            </button>
+            {isLocalHost ? (
+              <button
+                type="button"
+                onClick={() => setTarget("local")}
+                className={`emotion-chip ${target === "local" ? "active" : ""}`}
+              >
+                Локальная
+              </button>
+            ) : null}
             <button
               type="button"
               onClick={() => setTarget("prod")}
