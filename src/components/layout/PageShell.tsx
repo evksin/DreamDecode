@@ -8,18 +8,19 @@ type PageShellProps = {
 
 export function PageShell({ children, rightPanel }: PageShellProps) {
   return (
-    <div className="min-h-screen bg-bg-dream-900">
+    <div style={{ minHeight: "100vh" }}>
       <Header />
-      <main className="mx-auto w-full max-w-[1400px] px-6 py-12">
-        {rightPanel ? (
-          <div className="grid gap-8 lg:grid-cols-[minmax(0,1fr)_320px]">
-            <div>{children}</div>
-            <aside className="hidden lg:block">{rightPanel}</aside>
-          </div>
-        ) : (
-          children
-        )}
-      </main>
+      <main>{children}</main>
+      <footer
+        style={{
+          textAlign: "center",
+          padding: "40px 24px",
+          borderTop: "1px solid var(--border-color)",
+          color: "var(--text-secondary)",
+        }}
+      >
+        <p>© 2026 DreamDecode. Все права защищены.</p>
+      </footer>
     </div>
   );
 }

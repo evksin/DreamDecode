@@ -78,11 +78,9 @@ export function DreamForm() {
   }
 
   return (
-    <div className="space-y-8">
-      <div className="space-y-3">
-        <label className="text-sm text-text-dream-400">
-          Название (опционально)
-        </label>
+    <div>
+      <div className="form-group">
+        <label className="form-label">Название сна (опционально)</label>
         <Input
           value={title}
           onChange={(event) => setTitle(event.target.value)}
@@ -90,39 +88,35 @@ export function DreamForm() {
         />
       </div>
 
-      <div className="space-y-3">
-        <label className="text-sm text-text-dream-400">
-          Опишите сон подробнее...
-        </label>
+      <div className="form-group">
+        <label className="form-label">Опишите сон подробнее...</label>
         <Textarea
           value={description}
           onChange={(event) => setDescription(event.target.value)}
           placeholder="Опишите сон подробнее..."
-          className="min-h-[300px]"
         />
       </div>
 
-      <div className="space-y-3">
-        <label className="text-sm text-text-dream-400">
-          Выберите эмоцию
-        </label>
-        <div className="flex flex-wrap gap-3">
+      <div className="form-group">
+        <label className="form-label">Выберите эмоцию</label>
+        <div className="emotion-chips">
           {emotions.map((item) => (
             <button
               key={item.value}
               type="button"
               onClick={() => setEmotion(item.value)}
+              className={`emotion-chip ${emotion === item.value ? "active" : ""}`}
             >
-              <Badge active={emotion === item.value}>{item.label}</Badge>
+              {item.label}
             </button>
           ))}
         </div>
       </div>
 
-      <div className="space-y-3">
-        <div className="flex items-center justify-between text-sm text-text-dream-400">
-          <span>Насколько ясен был сон?</span>
-          <span>{clarity}/10</span>
+      <div className="form-group">
+        <label className="form-label">Насколько ясен был сон?</label>
+        <div style={{ display: "flex", justifyContent: "space-between" }}>
+          <span style={{ color: "var(--text-secondary)" }}>{clarity}/10</span>
         </div>
         <Slider
           min={1}
@@ -132,63 +126,53 @@ export function DreamForm() {
         />
       </div>
 
-      <label className="flex items-center gap-3 text-sm text-text-dream-400">
-        <input
-          type="checkbox"
-          checked={lucid}
-          onChange={(event) => setLucid(event.target.checked)}
-          className="h-4 w-4 rounded border-border-dream bg-bg-dream-800 text-accent-purple"
-        />
-        Это был осознанный сон
-      </label>
+      <div className="form-group">
+        <label className="form-label">
+          <input
+            type="checkbox"
+            checked={lucid}
+            onChange={(event) => setLucid(event.target.checked)}
+            style={{ marginRight: "8px" }}
+          />
+          Это был осознанный сон?
+        </label>
+      </div>
 
       {error ? (
-        <div className="text-sm text-accent-pink">{error}</div>
+        <div style={{ color: "var(--accent-pink)", marginBottom: "12px" }}>
+          {error}
+        </div>
       ) : null}
 
-      <div className="flex flex-col gap-3">
-        <Button
+      <div className="form-group">
+        <button
           type="button"
           onClick={handleAnalyze}
           disabled={loading || !description.trim()}
-          className="w-full px-4 py-4 text-base font-semibold transition-all duration-300 hover:scale-[1.02]"
+          className="btn btn-primary"
+          style={{ width: "100%", justifyContent: "center" }}
         >
-          {loading ? (
-            <span className="flex items-center justify-center gap-2">
-              <span className="h-4 w-4 animate-spin rounded-full border-2 border-bg-dream-900 border-t-transparent" />
-              Анализирую сон...
-            </span>
-          ) : (
-            "✨ Проанализировать сон"
-          )}
-        </Button>
-        <Button
+          {loading ? "Анализирую сон..." : "✨ Проанализировать сон"}
+        </button>
+      </div>
+      <div className="form-group">
+        <button
           type="button"
-          variant="secondary"
           onClick={handleSubmit}
           disabled={pending}
-          className="w-full px-4 py-4 text-base transition-all duration-300 hover:scale-[1.02]"
+          className="btn btn-secondary"
+          style={{ width: "100%", justifyContent: "center" }}
         >
           {pending ? "Сохраняю..." : "Сохранить и перейти"}
-        </Button>
+        </button>
       </div>
 
       {analysis ? (
-        <div className="rounded-xl border border-border-dream bg-bg-dream-800/80 p-4 text-sm text-text-dream-400">
-          <div className="mb-2 text-sm font-semibold text-text-dream-50">
-            AI анализ готов
-          </div>
-          <p className="mb-3">{analysis.interpretation}</p>
-          <div className="flex flex-wrap gap-2">
-            {analysis.symbols.map((symbol) => (
-              <span
-                key={symbol.name}
-                className="rounded-full border border-border-dream px-3 py-1 text-xs"
-              >
-                {symbol.name}
-              </span>
-            ))}
-          </div>
+        <div className="form-group">
+          <div className="form-label">AI анализ готов</div>
+          <p className="form-textarea" style={{ minHeight: "auto" }}>
+            {analysis.interpretation}
+          </p>
         </div>
       ) : null}
     </div>

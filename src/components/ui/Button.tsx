@@ -10,12 +10,10 @@ type ButtonProps = ButtonHTMLAttributes<HTMLButtonElement> & {
 };
 
 const variants: Record<Variant, string> = {
-  primary:
-    "bg-gradient-to-br from-accent-purple to-accent-pink text-white shadow-dream-md hover:shadow-dream-lg",
-  secondary:
-    "bg-accent-purple/10 text-accent-purple border border-accent-purple hover:bg-accent-purple/20",
-  ghost: "bg-transparent text-text-dream-400 hover:text-text-dream-50",
-  danger: "bg-red-500 text-white hover:bg-red-600",
+  primary: "btn btn-primary",
+  secondary: "btn btn-secondary",
+  ghost: "btn",
+  danger: "btn",
 };
 
 const sizes: Record<Size, string> = {
@@ -33,7 +31,7 @@ export function Button({
   return (
     <button
       className={cn(
-        "rounded-lg font-medium transition-all duration-300 hover:-translate-y-1 hover:shadow-dream-lg active:scale-[0.98] disabled:cursor-not-allowed disabled:opacity-50",
+        "disabled:cursor-not-allowed disabled:opacity-50",
         variants[variant],
         sizes[size],
         className
