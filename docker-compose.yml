@@ -1,0 +1,17 @@
+version: "3.9"
+services:
+  postgres:
+    image: postgres:16-alpine
+    container_name: dreamdecode-postgres
+    restart: unless-stopped
+    ports:
+      - "5432:5432"
+    environment:
+      POSTGRES_USER: dreamdecode
+      POSTGRES_PASSWORD: dreamdecode
+      POSTGRES_DB: dreamdecode_local
+    volumes:
+      - dreamdecode_pgdata:/var/lib/postgresql/data
+
+volumes:
+  dreamdecode_pgdata:
