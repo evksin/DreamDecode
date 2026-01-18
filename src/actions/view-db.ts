@@ -29,10 +29,11 @@ function getDbUrl(target: DbTarget) {
   if (target === "prod" && process.env.VIEW_DB_PROD_URL) {
     return process.env.VIEW_DB_PROD_URL;
   }
-  if (process.env.DATABASE_URL) {
-    return process.env.DATABASE_URL;
-  }
-  throw new Error("Не задана строка подключения к базе данных.");
+  throw new Error(
+    target === "local"
+      ? "Не задан VIEW_DB_LOCAL_URL для локальной базы."
+      : "Не задан VIEW_DB_PROD_URL для рабочей базы."
+  );
 }
 
 function quoteIdentifier(name: string) {
