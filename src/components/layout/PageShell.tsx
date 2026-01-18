@@ -3,10 +3,9 @@ import { Header } from "@/components/layout/Header";
 
 type PageShellProps = {
   children: ReactNode;
-  rightPanel?: ReactNode;
 };
 
-export function PageShell({ children, rightPanel }: PageShellProps) {
+export function PageShell({ children }: PageShellProps) {
   return (
     <div style={{ minHeight: "100vh" }}>
       <Header />

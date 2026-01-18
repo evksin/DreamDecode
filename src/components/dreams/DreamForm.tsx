@@ -2,10 +2,8 @@
 
 import { useState, useTransition } from "react";
 import { useRouter } from "next/navigation";
-import { Button } from "@/components/ui/Button";
 import { Input } from "@/components/ui/Input";
 import { Textarea } from "@/components/ui/Textarea";
-import { Badge } from "@/components/ui/Badge";
 import { Slider } from "@/components/ui/Slider";
 import type { AnalysisResult, DreamInput, EmotionType } from "@/types";
 import { createDreamAction } from "@/actions/dreams";

@@ -1,4 +1,5 @@
 import { notFound } from "next/navigation";
+import Link from "next/link";
 import { PageShell } from "@/components/layout/PageShell";
 import { Button } from "@/components/ui/Button";
 import { DreamAnalysis } from "@/components/dreams/DreamAnalysis";
@@ -28,9 +29,9 @@ export default async function DreamPage({ params }: DreamPageProps) {
         <div className="section-header">
           <h1 className="section-title">🔮 Анализ сна</h1>
           <div className="header-nav">
-            <a className="btn btn-secondary" href="/dream/new">
+            <Link className="btn btn-secondary" href="/dream/new">
               🔄 Переанализировать
-            </a>
+            </Link>
             <Button variant="secondary" disabled>
               ❤️ Сохранить
             </Button>
