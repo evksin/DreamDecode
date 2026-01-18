@@ -2,6 +2,7 @@ import { prisma } from "@/lib/prisma";
 import styles from "./page.module.css";
 
 export const dynamic = "force-dynamic";
+export const runtime = "nodejs";
 
 export default async function Home() {
   const notes = await prisma.note.findMany({
