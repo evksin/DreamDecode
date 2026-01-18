@@ -1,14 +1,31 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
+import { motion } from "framer-motion";
 import {
+  CartesianGrid,
   LineChart,
   Line,
   ResponsiveContainer,
   XAxis,
   YAxis,
   Tooltip,
+  TooltipProps,
 } from "recharts";
+
+function ChartTooltip({
+  active,
+  payload,
+  label,
+}: TooltipProps<number, string>) {
+  if (!active || !payload?.length) return null;
+  return (
+    <div className="rounded-lg border border-border-dream bg-bg-dream-800 px-3 py-2 text-xs text-text-dream-50 shadow-lg">
+      <div className="text-text-dream-400">{label}</div>
+      <div className="font-semibold">{payload[0].value}</div>
+    </div>
+  );
+}
 
 type MonthlyChartProps = {
   data: { date: string; count: number }[];
@@ -33,19 +50,20 @@ export function MonthlyChart({ data }: MonthlyChartProps) {
   }, []);
 
   return (
-    <div ref={containerRef} className="min-h-[220px] w-full">
+    <motion.div
+      initial={{ opacity: 0, y: 50 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.6 }}
+      ref={containerRef}
+      className="min-h-[220px] w-full"
+    >
       {ready ? (
         <ResponsiveContainer width="100%" height="100%">
           <LineChart data={data}>
+            <CartesianGrid stroke="#3D3B5C" strokeDasharray="3 3" />
             <XAxis dataKey="date" tick={{ fill: "#B0B3C1", fontSize: 10 }} />
             <YAxis tick={{ fill: "#B0B3C1", fontSize: 10 }} />
-            <Tooltip
-              contentStyle={{
-                background: "#1E1B4B",
-                border: "1px solid #3D3B5C",
-                color: "#E2E8F0",
-              }}
-            />
+            <Tooltip content={<ChartTooltip />} />
             <Line
               type="monotone"
               dataKey="count"
@@ -56,8 +74,8 @@ export function MonthlyChart({ data }: MonthlyChartProps) {
           </LineChart>
         </ResponsiveContainer>
       ) : (
-        <div className="h-[220px] w-full rounded-xl border border-border-color bg-bg-primary/40" />
+        <div className="h-[220px] w-full rounded-xl border border-border-dream bg-bg-dream-900/40" />
       )}
-    </div>
+    </motion.div>
   );
 }

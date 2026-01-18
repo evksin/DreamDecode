@@ -1,25 +1,30 @@
 import Link from "next/link";
-import { RiMoonClearLine, RiStarLine } from "react-icons/ri";
+import { MdBedtime, MdMoon } from "react-icons/md";
+import { Button } from "@/components/ui/Button";
 
 export function Header() {
   return (
-    <header className="flex items-center justify-between border-b border-border-color px-4 py-4 md:px-8">
-      <Link href="/" className="flex items-center gap-3">
-        <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-bg-secondary/80 text-accent-primary">
-          <RiMoonClearLine className="text-xl" />
-        </div>
-        <div>
-          <div className="text-lg font-semibold tracking-tight">
-            DreamDecode
+    <header className="w-full bg-gradient-to-br from-[#1E1B4B] to-[#2A1D5C] px-4 py-6 md:px-8">
+      <div className="mx-auto flex max-w-6xl flex-wrap items-center justify-between gap-4">
+        <Link href="/" className="flex items-center gap-3">
+          <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-bg-dream-800 text-accent-purple">
+            <MdBedtime className="text-2xl" />
           </div>
-          <div className="text-xs text-text-secondary">
-            Дневник снов и анализ
+          <div>
+            <div className="text-xl font-semibold tracking-tight text-text-dream-50">
+              DreamDecode
+            </div>
+            <div className="text-sm text-text-dream-400">
+              Следите за снами и получайте AI-анализ
+            </div>
           </div>
-        </div>
-      </Link>
-      <div className="hidden items-center gap-2 text-text-secondary md:flex">
-        <RiStarLine className="text-lg text-accent-secondary" />
-        <span className="text-sm">Ночная аналитика</span>
+        </Link>
+        <Link href="/dream/new" className="w-full md:w-auto">
+          <Button className="flex w-full items-center justify-center gap-2 md:w-auto">
+            <MdMoon className="text-lg" />
+            Записать сон
+          </Button>
+        </Link>
       </div>
     </header>
   );

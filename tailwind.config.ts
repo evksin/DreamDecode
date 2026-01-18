@@ -10,17 +10,21 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
-        "bg-primary": "#0A0A1A",
-        "bg-secondary": "#1E1B4B",
-        "bg-tertiary": "#2A1D5C",
-        "accent-primary": "#A78BFA",
-        "accent-secondary": "#EC4899",
-        "text-primary": "#E2E8F0",
-        "text-secondary": "#B0B3C1",
-        "border-color": "#3D3B5C",
+        "bg-dream-900": "var(--bg-dream-900)",
+        "bg-dream-800": "var(--bg-dream-800)",
+        "bg-dream-700": "var(--bg-dream-700)",
+        "accent-purple": "var(--accent-purple)",
+        "accent-pink": "var(--accent-pink)",
+        "text-dream-50": "var(--text-dream-50)",
+        "text-dream-400": "var(--text-dream-400)",
+        "border-dream": "var(--border-dream)",
       },
       boxShadow: {
         glow: "0 0 30px rgba(167, 139, 250, 0.35)",
+        neon: "0 10px 30px rgba(167, 139, 250, 0.35)",
+      },
+      fontFamily: {
+        inter: ["var(--font-inter)", "system-ui", "sans-serif"],
       },
     },
   },

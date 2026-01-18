@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { MdMoon } from "react-icons/md";
 import { PageShell } from "@/components/layout/PageShell";
 import { Button } from "@/components/ui/Button";
 import { Card } from "@/components/ui/Card";
@@ -18,8 +19,10 @@ export default async function Home() {
       rightPanel={
         <div className="space-y-6">
           <Card className="space-y-3">
-            <div className="text-sm font-semibold">Паттерны 7 дней</div>
-            <div className="space-y-2 text-xs text-text-secondary">
+            <div className="text-sm font-semibold text-text-dream-50">
+              Паттерны 7 дней
+            </div>
+            <div className="space-y-2 text-xs text-text-dream-400">
               {analytics.topSymbols.slice(0, 3).map((symbol) => (
                 <div key={symbol.name} className="flex justify-between">
                   <span>{symbol.name}</span>
@@ -32,40 +35,43 @@ export default async function Home() {
             </div>
           </Card>
           <Card>
-            <div className="text-sm font-semibold">Настроение недели</div>
+            <div className="text-sm font-semibold text-text-dream-50">
+              Настроение недели
+            </div>
             <MonthlyChart data={analytics.monthlySeries.slice(-7)} />
           </Card>
         </div>
       }
     >
       <div className="space-y-8">
-        <div className="dream-gradient flex flex-col gap-4 rounded-3xl border border-border-color p-6 md:flex-row md:items-center md:justify-between">
-          <div>
-            <h1 className="text-2xl font-semibold md:text-3xl">DreamDecode</h1>
-            <p className="text-sm text-text-secondary">
-              Отслеживайте сны и получайте AI-анализ.
-            </p>
-          </div>
-          <Link href="/dream/new">
-            <Button size="lg">Записать сон</Button>
-          </Link>
-        </div>
-
         <section className="space-y-4">
           <div className="flex items-center justify-between">
-            <h2 className="text-lg font-semibold">Последние сны</h2>
-            <Link href="/analytics" className="text-sm text-accent-primary">
+            <h2 className="text-lg font-semibold text-text-dream-50">
+              Последние сны
+            </h2>
+            <Link href="/analytics" className="text-sm text-accent-purple">
               Смотреть аналитику
             </Link>
           </div>
           {dreams.length ? (
-            <div className="grid gap-4 md:grid-cols-2 xl:grid-cols-3">
+            <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
               {dreams.map((dream) => (
                 <DreamCard key={dream.id} dream={dream} />
               ))}
             </div>
           ) : (
-            <Card>Пока нет снов. Добавьте первый!</Card>
+            <Card className="flex flex-col items-center gap-4 py-10 text-center">
+              <MdMoon className="text-4xl text-accent-purple" />
+              <div className="text-base font-semibold text-text-dream-50">
+                Пока нет снов. Добавьте первый!
+              </div>
+              <Link href="/dream/new">
+                <Button className="flex items-center gap-2 px-6 py-3">
+                  <MdMoon />
+                  Записать сон
+                </Button>
+              </Link>
+            </Card>
           )}
         </section>
       </div>

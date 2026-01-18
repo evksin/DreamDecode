@@ -12,7 +12,7 @@ export function DeleteDreamButton({ id }: { id: string }) {
   return (
     <Button
       type="button"
-      variant="secondary"
+      variant="danger"
       disabled={pending}
       onClick={() => {
         startTransition(async () => {

@@ -8,23 +8,25 @@ export default function NewDreamPage() {
       rightPanel={
         <div className="space-y-6">
           <Card className="space-y-2">
-            <div className="text-sm font-semibold">Быстрые подсказки</div>
-            <ul className="list-disc space-y-2 pl-4 text-xs text-text-secondary">
+            <div className="text-sm font-semibold text-text-dream-50">
+              Быстрые подсказки
+            </div>
+            <ul className="list-disc space-y-2 pl-4 text-xs text-text-dream-400">
               <li>Добавьте ключевые символы и эмоции.</li>
               <li>Опишите сцену и окружение.</li>
               <li>Уточните, был ли сон осознанным.</li>
             </ul>
           </Card>
           <Card className="space-y-2">
-            <div className="text-sm font-semibold">Теги</div>
-            <div className="flex flex-wrap gap-2 text-xs text-text-secondary">
-              <span className="rounded-full border border-border-color px-3 py-1">
+            <div className="text-sm font-semibold text-text-dream-50">Теги</div>
+            <div className="flex flex-wrap gap-2 text-xs text-text-dream-400">
+              <span className="rounded-full border border-border-dream px-3 py-1">
                 луна
               </span>
-              <span className="rounded-full border border-border-color px-3 py-1">
+              <span className="rounded-full border border-border-dream px-3 py-1">
                 вода
               </span>
-              <span className="rounded-full border border-border-color px-3 py-1">
+              <span className="rounded-full border border-border-dream px-3 py-1">
                 полёт
               </span>
             </div>
@@ -32,10 +34,10 @@ export default function NewDreamPage() {
         </div>
       }
     >
-      <div className="space-y-6">
+      <div className="mx-auto w-full max-w-3xl space-y-8 px-2 md:px-0">
         <div>
-          <h1 className="text-2xl font-semibold">Новый сон</h1>
-          <p className="text-sm text-text-secondary">
+          <h1 className="text-3xl font-bold text-text-dream-50">Новый сон</h1>
+          <p className="mt-2 text-sm text-text-dream-400">
             Запишите сон и получите AI-анализ.
           </p>
         </div>

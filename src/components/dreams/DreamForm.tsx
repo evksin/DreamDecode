@@ -10,13 +10,13 @@ import { Slider } from "@/components/ui/Slider";
 import type { AnalysisResult, DreamInput, EmotionType } from "@/types";
 import { createDreamAction } from "@/actions/dreams";
 
-const emotions: EmotionType[] = [
-  "Радость",
-  "Страх",
-  "Полёт",
-  "Спокойствие",
-  "Тревога",
-  "Любопытство",
+const emotions: Array<{ value: EmotionType; label: string }> = [
+  { value: "Радость", label: "Радость 😊" },
+  { value: "Страх", label: "Страх 😨" },
+  { value: "Полёт", label: "Полёт 🚀" },
+  { value: "Спокойствие", label: "Спокойствие 😌" },
+  { value: "Тревога", label: "Тревога 😰" },
+  { value: "Любопытство", label: "Любопытство 🤔" },
 ];
 
 export function DreamForm() {
@@ -78,44 +78,50 @@ export function DreamForm() {
   }
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-8">
       <div className="space-y-3">
-        <label className="text-sm text-text-secondary">Название (опционально)</label>
+        <label className="text-sm text-text-dream-400">
+          Название (опционально)
+        </label>
         <Input
           value={title}
           onChange={(event) => setTitle(event.target.value)}
-          placeholder="Сон о лунном океане"
+          placeholder="Название сна (опционально)"
         />
       </div>
 
       <div className="space-y-3">
-        <label className="text-sm text-text-secondary">Описание сна</label>
+        <label className="text-sm text-text-dream-400">
+          Опишите сон подробнее...
+        </label>
         <Textarea
           value={description}
           onChange={(event) => setDescription(event.target.value)}
-          placeholder="Опишите сон максимально подробно..."
+          placeholder="Опишите сон подробнее..."
           className="min-h-[300px]"
         />
       </div>
 
       <div className="space-y-3">
-        <label className="text-sm text-text-secondary">Эмоции</label>
-        <div className="flex flex-wrap gap-2">
+        <label className="text-sm text-text-dream-400">
+          Выберите эмоцию
+        </label>
+        <div className="flex flex-wrap gap-3">
           {emotions.map((item) => (
             <button
-              key={item}
+              key={item.value}
               type="button"
-              onClick={() => setEmotion(item)}
+              onClick={() => setEmotion(item.value)}
             >
-              <Badge active={emotion === item}>{item}</Badge>
+              <Badge active={emotion === item.value}>{item.label}</Badge>
             </button>
           ))}
         </div>
       </div>
 
       <div className="space-y-3">
-        <div className="flex items-center justify-between text-sm text-text-secondary">
-          <span>Ясность сна</span>
+        <div className="flex items-center justify-between text-sm text-text-dream-400">
+          <span>Насколько ясен был сон?</span>
           <span>{clarity}/10</span>
         </div>
         <Slider
@@ -126,41 +132,50 @@ export function DreamForm() {
         />
       </div>
 
-      <label className="flex items-center gap-3 text-sm text-text-secondary">
+      <label className="flex items-center gap-3 text-sm text-text-dream-400">
         <input
           type="checkbox"
           checked={lucid}
           onChange={(event) => setLucid(event.target.checked)}
-          className="h-4 w-4 rounded border-border-color bg-bg-primary"
+          className="h-4 w-4 rounded border-border-dream bg-bg-dream-800 text-accent-purple"
         />
         Это был осознанный сон
       </label>
 
-      {error ? <div className="text-sm text-accent-secondary">{error}</div> : null}
+      {error ? (
+        <div className="text-sm text-accent-pink">{error}</div>
+      ) : null}
 
-      <div className="flex flex-col gap-3 sm:flex-row">
+      <div className="flex flex-col gap-3">
         <Button
           type="button"
           onClick={handleAnalyze}
           disabled={loading || !description.trim()}
-          className="flex-1"
+          className="w-full px-4 py-4 text-base font-semibold transition-all duration-300 hover:scale-[1.02]"
         >
-          {loading ? "Анализирую сон с помощью AI..." : "Проанализировать сон"}
+          {loading ? (
+            <span className="flex items-center justify-center gap-2">
+              <span className="h-4 w-4 animate-spin rounded-full border-2 border-bg-dream-900 border-t-transparent" />
+              Анализирую сон...
+            </span>
+          ) : (
+            "✨ Проанализировать сон"
+          )}
         </Button>
         <Button
           type="button"
           variant="secondary"
           onClick={handleSubmit}
           disabled={pending}
-          className="flex-1"
+          className="w-full px-4 py-4 text-base transition-all duration-300 hover:scale-[1.02]"
         >
           {pending ? "Сохраняю..." : "Сохранить и перейти"}
         </Button>
       </div>
 
       {analysis ? (
-        <div className="rounded-2xl border border-border-color bg-bg-secondary/60 p-4 text-sm text-text-secondary">
-          <div className="mb-2 text-sm font-semibold text-text-primary">
+        <div className="rounded-xl border border-border-dream bg-bg-dream-800/80 p-4 text-sm text-text-dream-400">
+          <div className="mb-2 text-sm font-semibold text-text-dream-50">
             AI анализ готов
           </div>
           <p className="mb-3">{analysis.interpretation}</p>
@@ -168,7 +183,7 @@ export function DreamForm() {
             {analysis.symbols.map((symbol) => (
               <span
                 key={symbol.name}
-                className="rounded-full border border-border-color px-3 py-1 text-xs"
+                className="rounded-full border border-border-dream px-3 py-1 text-xs"
               >
                 {symbol.name}
               </span>

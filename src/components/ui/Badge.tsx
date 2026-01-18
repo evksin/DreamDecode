@@ -9,10 +9,10 @@ export function Badge({ className, active, ...props }: BadgeProps) {
   return (
     <span
       className={cn(
-        "inline-flex items-center rounded-full border px-3 py-1 text-xs transition",
+        "inline-flex items-center rounded-full border px-4 py-2 text-xs transition-all duration-200",
         active
-          ? "border-accent-primary bg-accent-primary/20 text-text-primary"
-          : "border-border-color text-text-secondary hover:border-accent-primary/60",
+          ? "border-accent-purple bg-accent-purple text-bg-dream-900 font-semibold"
+          : "border-border-dream bg-bg-dream-800 text-text-dream-400 hover:border-accent-purple",
         className
       )}
       {...props}

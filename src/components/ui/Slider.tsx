@@ -8,7 +8,7 @@ export function Slider({ className, ...props }: SliderProps) {
     <input
       type="range"
       className={cn(
-        "w-full cursor-pointer accent-accent-primary",
+        "w-full cursor-pointer accent-accent-purple",
         className
       )}
       {...props}

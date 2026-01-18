@@ -1,7 +1,7 @@
 import type { ButtonHTMLAttributes } from "react";
 import { cn } from "@/components/ui/utils";
 
-type Variant = "primary" | "secondary" | "ghost";
+type Variant = "primary" | "secondary" | "ghost" | "danger";
 type Size = "sm" | "md" | "lg";
 
 type ButtonProps = ButtonHTMLAttributes<HTMLButtonElement> & {
@@ -11,10 +11,11 @@ type ButtonProps = ButtonHTMLAttributes<HTMLButtonElement> & {
 
 const variants: Record<Variant, string> = {
   primary:
-    "bg-accent-primary text-bg-primary hover:bg-accent-secondary shadow-glow",
+    "bg-accent-purple text-bg-dream-900 hover:bg-accent-pink shadow-lg",
   secondary:
-    "bg-bg-secondary text-text-primary border border-border-color hover:bg-bg-tertiary",
-  ghost: "bg-transparent text-text-secondary hover:text-text-primary",
+    "bg-bg-dream-800 text-text-dream-50 border border-border-dream hover:bg-bg-dream-700",
+  ghost: "bg-transparent text-text-dream-400 hover:text-text-dream-50",
+  danger: "bg-red-500 text-white hover:bg-red-600",
 };
 
 const sizes: Record<Size, string> = {
@@ -32,7 +33,7 @@ export function Button({
   return (
     <button
       className={cn(
-        "rounded-xl transition duration-200 disabled:cursor-not-allowed disabled:opacity-60",
+        "rounded-lg font-medium transition-all duration-300 hover:scale-105 active:scale-[0.98] disabled:cursor-not-allowed disabled:opacity-50",
         variants[variant],
         sizes[size],
         className
