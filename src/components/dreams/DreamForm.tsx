@@ -72,8 +72,16 @@ export function DreamForm() {
     };
 
     startTransition(async () => {
-      const result = await createDreamAction(data);
-      router.push(`/dream/${result.id}`);
+      try {
+        const result = await createDreamAction(data);
+        router.push(`/dream/${result.id}`);
+      } catch (err) {
+        setError(
+          err instanceof Error
+            ? err.message
+            : "Не удалось сохранить сон. Проверьте подключение к базе."
+        );
+      }
     });
   }
 
