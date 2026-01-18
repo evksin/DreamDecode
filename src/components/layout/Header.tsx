@@ -17,6 +17,9 @@ export function Header() {
           <Link href="/analytics" className="nav-link">
             Аналитика
           </Link>
+          <Link href="/view-db" className="nav-link">
+            View DB
+          </Link>
           <Link href="/dream/new" className="btn btn-primary" style={{ margin: "0" }}>
             + Записать
           </Link>

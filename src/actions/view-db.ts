@@ -106,19 +106,27 @@ export async function getTablePageAction(
   target: DbTarget,
   table: string,
   page: number,
-  pageSize: number
+  pageSize: number,
+  sortColumn?: string,
+  sortDirection?: "asc" | "desc"
 ) {
   return withDb(target, async (prisma) => {
     const { columnInfo, primaryKeys } = await loadTableMeta(prisma, table);
     const safeTable = quoteIdentifier(table);
+    const allowedColumns = new Set(columnInfo.map((column) => column.name));
+    const safeSortColumn =
+      sortColumn && allowedColumns.has(sortColumn) ? sortColumn : null;
+    const safeSortDirection = sortDirection === "desc" ? "DESC" : "ASC";
     const orderColumns = primaryKeys.length
       ? primaryKeys
       : columnInfo[0]
         ? [columnInfo[0].name]
         : [];
-    const orderBy = orderColumns.length
-      ? `ORDER BY ${orderColumns.map(quoteIdentifier).join(", ")}`
-      : "";
+    const orderBy = safeSortColumn
+      ? `ORDER BY ${quoteIdentifier(safeSortColumn)} ${safeSortDirection}`
+      : orderColumns.length
+        ? `ORDER BY ${orderColumns.map(quoteIdentifier).join(", ")}`
+        : "";
     const offset = (page - 1) * pageSize;
     const rows = (await prisma.$queryRawUnsafe(
       `SELECT * FROM ${safeTable} ${orderBy} LIMIT $1 OFFSET $2`,
