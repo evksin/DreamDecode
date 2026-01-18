@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { MdMoon } from "react-icons/md";
+import { MdBedtime } from "react-icons/md";
 import { PageShell } from "@/components/layout/PageShell";
 import { Button } from "@/components/ui/Button";
 import { Card } from "@/components/ui/Card";
@@ -61,13 +61,13 @@ export default async function Home() {
             </div>
           ) : (
             <Card className="flex flex-col items-center gap-4 py-10 text-center">
-              <MdMoon className="text-4xl text-accent-purple" />
+              <MdBedtime className="text-4xl text-accent-purple" />
               <div className="text-base font-semibold text-text-dream-50">
                 Пока нет снов. Добавьте первый!
               </div>
               <Link href="/dream/new">
                 <Button className="flex items-center gap-2 px-6 py-3">
-                  <MdMoon />
+                  <MdBedtime />
                   Записать сон
                 </Button>
               </Link>

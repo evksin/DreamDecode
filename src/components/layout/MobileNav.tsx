@@ -1,10 +1,10 @@
 import Link from "next/link";
-import { MdBedtime, MdMoon } from "react-icons/md";
+import { MdBedtime } from "react-icons/md";
 import { BsGraphUp } from "react-icons/bs";
 
 const items = [
   { href: "/", label: "Home", icon: MdBedtime },
-  { href: "/dream/new", label: "New", icon: MdMoon },
+  { href: "/dream/new", label: "New", icon: MdBedtime },
   { href: "/analytics", label: "Stats", icon: BsGraphUp },
 ];
 

@@ -3,7 +3,7 @@ import { Card } from "@/components/ui/Card";
 import { MonthlyChart } from "@/components/analytics/MonthlyChart";
 import { SymbolCloud } from "@/components/analytics/SymbolCloud";
 import { getDreamAnalytics } from "@/lib/dreams";
-import { MdBedtime, MdMoon } from "react-icons/md";
+import { MdBedtime } from "react-icons/md";
 import { FaStar } from "react-icons/fa";
 import { BsGraphUp } from "react-icons/bs";
 
@@ -51,7 +51,7 @@ export default async function AnalyticsPage() {
             </div>
           </Card>
           <Card className="flex items-center gap-4">
-            <MdMoon className="text-3xl text-accent-purple" />
+            <MdBedtime className="text-3xl text-accent-purple" />
             <div>
               <div className="text-xs text-text-dream-400">Частая эмоция</div>
               <div className="text-lg font-semibold text-text-dream-50">

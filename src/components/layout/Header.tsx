@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { MdBedtime, MdMoon } from "react-icons/md";
+import { MdBedtime } from "react-icons/md";
 import { Button } from "@/components/ui/Button";
 
 export function Header() {
@@ -21,7 +21,7 @@ export function Header() {
         </Link>
         <Link href="/dream/new" className="w-full md:w-auto">
           <Button className="flex w-full items-center justify-center gap-2 md:w-auto">
-            <MdMoon className="text-lg" />
+            <MdBedtime className="text-lg" />
             Записать сон
           </Button>
         </Link>
