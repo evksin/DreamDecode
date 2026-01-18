@@ -169,23 +169,28 @@ export function ViewDbClient() {
   const [rowEdits, setRowEdits] = useState<FieldValues>({});
   const [sortColumn, setSortColumn] = useState<string | null>(null);
   const [sortDirection, setSortDirection] = useState<"asc" | "desc">("asc");
-  const [isLocalHost, setIsLocalHost] = useState(true);
+  const [isLocalHost, setIsLocalHost] = useState<boolean | null>(null);
 
   useEffect(() => {
-    setIsLocalHost(
+    const local =
       typeof window !== "undefined" &&
-        (window.location.hostname === "localhost" ||
-          window.location.hostname === "127.0.0.1")
-    );
+      (window.location.hostname === "localhost" ||
+        window.location.hostname === "127.0.0.1");
+    setIsLocalHost(local);
+    if (!local) {
+      setTarget("prod");
+    }
   }, []);
 
   useEffect(() => {
+    if (isLocalHost === null) return;
     if (!isLocalHost && target === "local") {
-      setTarget("prod");
+      setError("Локальная база доступна только в режиме разработки (localhost).");
+      setTables([]);
+      setSelectedTable(null);
+      setTableData(null);
+      return;
     }
-  }, [isLocalHost, target]);
-
-  useEffect(() => {
     startTransition(async () => {
       try {
         setError(null);
@@ -199,7 +204,7 @@ export function ViewDbClient() {
         setTables([]);
       }
     });
-  }, [target]);
+  }, [isLocalHost, target]);
 
   useEffect(() => {
     setCreateValues({});
@@ -489,7 +494,7 @@ export function ViewDbClient() {
           <p className="dream-description">
             Выберите базу данных для просмотра.
           </p>
-          {!isLocalHost ? (
+          {isLocalHost === false ? (
             <p className="dream-description" style={{ marginTop: "8px" }}>
               Локальная база доступна только в режиме разработки (localhost).
             </p>
