@@ -9,12 +9,11 @@ export const dynamic = "force-dynamic";
 export const runtime = "nodejs";
 
 type DreamPageProps = {
-  params: { id?: string } | Promise<{ id?: string }>;
+  params: { id: string };
 };
 
 export default async function DreamPage({ params }: DreamPageProps) {
-  const resolvedParams = await Promise.resolve(params);
-  const id = resolvedParams?.id;
+  const id = params.id;
   if (!id) {
     notFound();
   }

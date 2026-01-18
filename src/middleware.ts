@@ -1,15 +1,23 @@
 import { NextResponse } from "next/server";
 import type { NextRequest } from "next/server";
-import { auth } from "@/auth";
 
-export default auth((request: NextRequest) => {
-  const isAuthed = Boolean(request.auth);
-  if (!isAuthed) {
+const sessionCookieNames = [
+  "__Secure-authjs.session-token",
+  "authjs.session-token",
+  "__Secure-next-auth.session-token",
+  "next-auth.session-token",
+];
+
+export default function middleware(request: NextRequest) {
+  const hasSessionCookie = sessionCookieNames.some((name) =>
+    request.cookies.get(name)
+  );
+  if (!hasSessionCookie) {
     const loginUrl = new URL("/login", request.url);
     return NextResponse.redirect(loginUrl);
   }
   return NextResponse.next();
-});
+}
 
 export const config = {
   // Защищаем приватные страницы
