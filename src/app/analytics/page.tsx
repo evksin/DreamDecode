@@ -1,5 +1,4 @@
 import { PageShell } from "@/components/layout/PageShell";
-import { Card } from "@/components/ui/Card";
 import { MonthlyChart } from "@/components/analytics/MonthlyChart";
 import { SymbolCloud } from "@/components/analytics/SymbolCloud";
 import { getDreamAnalytics } from "@/lib/dreams";
@@ -21,89 +20,71 @@ export default async function AnalyticsPage() {
 
   return (
     <PageShell>
-      <div className="space-y-6">
-        <div>
-          <h1 className="text-2xl font-semibold text-text-dream-50">
-            Аналитика
-          </h1>
-          <p className="text-sm text-text-dream-400">
-            Статистика за месяц и повторяющиеся паттерны.
-          </p>
+      <main className="container">
+        <div className="section-header">
+          <h1 className="section-title">📊 Аналитика</h1>
         </div>
 
-        <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
-          <Card className="flex items-center gap-4">
-            <MdBedtime className="text-3xl text-accent-purple" />
-            <div>
-              <div className="text-xs text-text-dream-400">Всего снов</div>
-              <div className="text-2xl font-semibold text-text-dream-50">
-                {analytics.totalDreams}
-              </div>
+        <div className="dreams-grid">
+          <div className="dream-card">
+            <div className="dream-card-header">
+              <MdBedtime className="dream-emotion" />
+              <span className="dream-date">Всего снов</span>
             </div>
-          </Card>
-          <Card className="flex items-center gap-4">
-            <FaStar className="text-3xl text-accent-purple" />
-            <div>
-              <div className="text-xs text-text-dream-400">Средняя ясность</div>
-              <div className="text-2xl font-semibold text-text-dream-50">
-                {analytics.avgClarity.toFixed(1)}
-              </div>
-            </div>
-          </Card>
-          <Card className="flex items-center gap-4">
-            <MdBedtime className="text-3xl text-accent-purple" />
-            <div>
-              <div className="text-xs text-text-dream-400">Частая эмоция</div>
-              <div className="text-lg font-semibold text-text-dream-50">
-                {topEmotionLabel}
-              </div>
-            </div>
-          </Card>
-          <Card className="flex items-center gap-4">
-            <BsGraphUp className="text-3xl text-accent-purple" />
-            <div>
-              <div className="text-xs text-text-dream-400">Топ символ</div>
-              <div className="text-lg font-semibold text-text-dream-50">
-                {topSymbolLabel}
-              </div>
-            </div>
-          </Card>
-        </div>
-
-        <div className="grid gap-4 lg:grid-cols-2">
-          <Card>
-            <div className="mb-3 text-sm font-semibold text-text-dream-50">
-              График эмоций
-            </div>
-            <MonthlyChart data={analytics.monthlySeries} />
-          </Card>
-          <Card>
-            <div className="mb-3 text-sm font-semibold text-text-dream-50">
-              Облако символов
-            </div>
-            <SymbolCloud symbols={analytics.topSymbols} />
-          </Card>
-        </div>
-
-        <Card>
-          <div className="mb-4 text-sm font-semibold text-text-dream-50">
-            Топ-10 символов
+            <h3 className="dream-title">{analytics.totalDreams}</h3>
+            <p className="dream-description">Записей за всё время</p>
           </div>
-          <div className="divide-y divide-border-dream text-sm text-text-dream-400">
-            {analytics.topSymbols.map((symbol, index) => (
-              <div
-                key={symbol.name}
-                className="flex items-center justify-between py-2"
-              >
-                <span>
-                  {index + 1}. {symbol.name}
-                </span>
-                <span>{symbol.frequency}x</span>
-              </div>
-            ))}
+          <div className="dream-card">
+            <div className="dream-card-header">
+              <FaStar className="dream-emotion" />
+              <span className="dream-date">Средняя ясность</span>
+            </div>
+            <h3 className="dream-title">{analytics.avgClarity.toFixed(1)}</h3>
+            <p className="dream-description">Сводная оценка</p>
           </div>
-        </Card>
-      </div>
+          <div className="dream-card">
+            <div className="dream-card-header">
+              <MdBedtime className="dream-emotion" />
+              <span className="dream-date">Частая эмоция</span>
+            </div>
+            <h3 className="dream-title">{topEmotionLabel}</h3>
+            <p className="dream-description">Лидер месяца</p>
+          </div>
+          <div className="dream-card">
+            <div className="dream-card-header">
+              <BsGraphUp className="dream-emotion" />
+              <span className="dream-date">Топ символ</span>
+            </div>
+            <h3 className="dream-title">{topSymbolLabel}</h3>
+            <p className="dream-description">Самый частый символ</p>
+          </div>
+        </div>
+
+        <div className="container" style={{ padding: "32px 0" }}>
+          <div className="dreams-grid">
+            <div className="dream-card">
+              <h3 className="dream-title">График эмоций</h3>
+              <MonthlyChart data={analytics.monthlySeries} />
+            </div>
+            <div className="dream-card">
+              <h3 className="dream-title">Облако символов</h3>
+              <SymbolCloud symbols={analytics.topSymbols} />
+            </div>
+          </div>
+        </div>
+
+        <div className="dream-card">
+          <div className="dream-card-header">
+            <span className="dream-emotion">🏆</span>
+            <span className="dream-date">Топ-10 символов</span>
+          </div>
+          {analytics.topSymbols.map((symbol, index) => (
+            <p key={symbol.name} className="dream-description">
+              {index + 1}. {symbol.name} — {symbol.frequency}x
+            </p>
+          ))}
+        </div>
+      </main>
     </PageShell>
   );
 }

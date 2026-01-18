@@ -3,21 +3,26 @@ type SymbolCloudProps = {
 };
 
 export function SymbolCloud({ symbols }: SymbolCloudProps) {
-  function getSizeClass(frequency: number) {
-    if (frequency >= 8) return "text-5xl md:text-6xl";
-    if (frequency >= 5) return "text-3xl md:text-4xl";
-    if (frequency >= 3) return "text-2xl md:text-3xl";
-    return "text-base md:text-lg";
+  function getSizeValue(frequency: number) {
+    if (frequency >= 8) return 56;
+    if (frequency >= 5) return 40;
+    if (frequency >= 3) return 28;
+    return 16;
   }
 
   return (
-    <div className="flex flex-wrap items-end gap-4">
+    <div style={{ display: "flex", flexWrap: "wrap", gap: "16px" }}>
       {symbols.map((symbol) => (
         <span
           key={symbol.name}
-          className={`bg-gradient-to-r from-accent-purple to-accent-pink bg-clip-text text-transparent transition-all duration-300 hover:scale-110 ${getSizeClass(
-            symbol.frequency
-          )}`}
+          style={{
+            fontSize: `${getSizeValue(symbol.frequency)}px`,
+            background:
+              "linear-gradient(135deg, var(--accent-purple), var(--accent-pink))",
+            WebkitBackgroundClip: "text",
+            color: "transparent",
+            transition: "transform 0.3s ease",
+          }}
         >
           {symbol.name}
         </span>

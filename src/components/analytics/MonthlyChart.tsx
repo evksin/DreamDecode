@@ -23,9 +23,11 @@ function ChartTooltip({
 }) {
   if (!active || !payload?.length) return null;
   return (
-    <div className="rounded-lg border border-border-dream bg-bg-dream-800 px-3 py-2 text-xs text-text-dream-50 shadow-lg">
-      <div className="text-text-dream-400">{label}</div>
-      <div className="font-semibold">{payload[0].value}</div>
+    <div className="dream-card" style={{ padding: "12px 16px" }}>
+      <div style={{ color: "var(--text-secondary)", fontSize: "12px" }}>
+        {label}
+      </div>
+      <div style={{ fontWeight: 600 }}>{payload[0].value}</div>
     </div>
   );
 }
@@ -58,7 +60,7 @@ export function MonthlyChart({ data }: MonthlyChartProps) {
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.6 }}
       ref={containerRef}
-      className="min-h-[220px] w-full"
+      style={{ minHeight: "220px", width: "100%" }}
     >
       {ready ? (
         <ResponsiveContainer width="100%" height="100%">
@@ -77,7 +79,7 @@ export function MonthlyChart({ data }: MonthlyChartProps) {
           </LineChart>
         </ResponsiveContainer>
       ) : (
-        <div className="h-[220px] w-full rounded-xl border border-border-dream bg-bg-dream-900/40" />
+        <div className="dream-card" style={{ minHeight: "220px" }} />
       )}
     </motion.div>
   );
