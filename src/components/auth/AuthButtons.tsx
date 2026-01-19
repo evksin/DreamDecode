@@ -37,22 +37,22 @@ export function AuthControls() {
     const initial = displayName.trim().charAt(0).toUpperCase();
 
     return (
-      <div style={{ display: "flex", alignItems: "center", gap: "12px" }}>
-        <div style={{ display: "flex", alignItems: "center", gap: "10px" }}>
+      <div style={{ display: "flex", alignItems: "center", gap: "8px" }}>
+        <div style={{ display: "flex", alignItems: "center", gap: "8px" }}>
           {user?.image ? (
             <img
               src={user.image}
               alt={displayName}
-              width={32}
-              height={32}
+              width={24}
+              height={24}
               style={{ borderRadius: "999px", objectFit: "cover" }}
             />
           ) : (
             <div
               aria-hidden="true"
               style={{
-                width: "32px",
-                height: "32px",
+                width: "24px",
+                height: "24px",
                 borderRadius: "999px",
                 display: "flex",
                 alignItems: "center",
@@ -60,17 +60,43 @@ export function AuthControls() {
                 background: "rgba(124, 58, 237, 0.2)",
                 color: "var(--text-primary)",
                 fontWeight: 600,
+                fontSize: "12px",
               }}
             >
               {initial || "?"}
             </div>
           )}
-          <div style={{ display: "flex", flexDirection: "column" }}>
-            <span style={{ fontSize: "14px", color: "var(--text-primary)" }}>
+          <div
+            style={{
+              display: "flex",
+              flexDirection: "column",
+              maxWidth: "160px",
+              lineHeight: 1.15,
+            }}
+          >
+            <span
+              style={{
+                fontSize: "12px",
+                color: "var(--text-primary)",
+                whiteSpace: "nowrap",
+                overflow: "hidden",
+                textOverflow: "ellipsis",
+              }}
+              title={displayName}
+            >
               {displayName}
             </span>
             {email ? (
-              <span style={{ fontSize: "12px", color: "var(--text-secondary)" }}>
+              <span
+                style={{
+                  fontSize: "11px",
+                  color: "var(--text-secondary)",
+                  whiteSpace: "nowrap",
+                  overflow: "hidden",
+                  textOverflow: "ellipsis",
+                }}
+                title={email}
+              >
                 {email}
               </span>
             ) : null}
