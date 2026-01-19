@@ -30,7 +30,7 @@ export default async function MyPromptsPage() {
                 <h3 className="dream-title">{prompt.title}</h3>
                 <p className="dream-description">{prompt.content}</p>
                 <p className="dream-description">
-                  Доступ: {prompt.isPrivate ? "приватный" : "публичный"}
+                  Доступ: {prompt.isPublic ? "публичный" : "приватный"}
                 </p>
               </div>
             ))
