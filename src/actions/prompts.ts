@@ -2,6 +2,7 @@
 
 import { z } from "zod";
 import { prisma } from "@/lib/prisma";
+import type { Prisma } from "@prisma/client";
 import { auth } from "@/auth";
 import { revalidatePath } from "next/cache";
 
@@ -42,19 +43,20 @@ export async function listPrompts(input: z.infer<typeof listSchema>) {
   const { query, page, pageSize, mode } = listSchema.parse(input);
   const search = query?.trim();
 
-  const baseWhere =
+  const baseWhere: Prisma.PromptWhereInput =
     mode === "public"
       ? { isPublic: true }
       : mode === "favorites"
         ? { userId, isFavorite: true }
         : { userId };
 
-  const where = search
+  const queryMode: Prisma.QueryMode = "insensitive";
+  const where: Prisma.PromptWhereInput = search
     ? {
         ...baseWhere,
         OR: [
-          { title: { contains: search, mode: "insensitive" } },
-          { content: { contains: search, mode: "insensitive" } },
+          { title: { contains: search, mode: queryMode } },
+          { content: { contains: search, mode: queryMode } },
         ],
       }
     : baseWhere;
