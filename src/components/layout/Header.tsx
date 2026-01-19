@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { AuthControls } from "@/components/auth/AuthButtons";
 export function Header() {
   return (
     <header className="header">
@@ -20,6 +21,7 @@ export function Header() {
           <Link href="/view-db" className="nav-link">
             View DB
           </Link>
+          <AuthControls />
           <Link href="/dream/new" className="btn btn-primary" style={{ margin: "0" }}>
             + Записать
           </Link>

@@ -1,6 +1,7 @@
 "use client";
 
-import { signIn, signOut } from "next-auth/react";
+import Link from "next/link";
+import { signIn, signOut, useSession } from "next-auth/react";
 
 export function LoginButton() {
   return (
@@ -19,5 +20,23 @@ export function LogoutButton() {
     <button type="button" className="btn btn-secondary" onClick={() => signOut()}>
       Выйти
     </button>
+  );
+}
+
+export function AuthControls() {
+  const { status } = useSession();
+
+  if (status === "loading") {
+    return null;
+  }
+
+  if (status === "authenticated") {
+    return <LogoutButton />;
+  }
+
+  return (
+    <Link className="btn btn-secondary" href="/login">
+      Войти
+    </Link>
   );
 }
