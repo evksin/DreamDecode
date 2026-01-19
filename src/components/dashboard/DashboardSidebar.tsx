@@ -1,11 +1,12 @@
 import Link from "next/link";
 import { Star, History, Settings, Globe, Bookmark, MessageSquare } from "lucide-react";
+import type { LucideIcon } from "lucide-react";
 
 type SidebarItem = {
   key: string;
   label: string;
   href: string;
-  icon: typeof Moon;
+  icon: LucideIcon;
 };
 
 const items: SidebarItem[] = [
