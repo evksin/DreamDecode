@@ -1,7 +1,3 @@
-🧠 Новый README для DreamDecode
-
-Открой README.md в репозитории DreamDecode и полностью замени его этим:
-
 # DreamDecode 🌙✨  
 AI-powered dream journal & analysis platform
 
