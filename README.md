@@ -1,108 +1,76 @@
-🌙 DreamDecode
+🧠 Новый README для DreamDecode
 
-AI-powered Dream & Subconscious Analysis Platform
+Открой README.md в репозитории DreamDecode и полностью замени его этим:
 
-DreamDecode is a web application that helps people record, analyze and understand their dreams using artificial intelligence.
+# DreamDecode 🌙✨  
+AI-powered dream journal & analysis platform
 
-Your dreams are data — DreamDecode turns them into insight.
+Understand what your dreams really mean using artificial intelligence and psychology.
 
-🧠 What is DreamDecode?
+---
 
-DreamDecode is a dream journal with built-in AI analysis.
+## 🚀 What is DreamDecode?
 
-It allows you to:
+DreamDecode is a modern AI-powered web app that helps people:
 
-write down your dreams
+- Record their dreams  
+- Analyze patterns  
+- Understand emotions  
+- Discover hidden psychological signals  
 
-track emotional and symbolic patterns
+Unlike simple note apps, DreamDecode uses large language models to **interpret dreams in context**, giving meaningful insights instead of generic symbols.
 
-receive AI-generated psychological interpretations
+---
 
-explore what your subconscious is trying to tell you
+## 🧠 How it works
 
-Instead of just storing dreams, DreamDecode turns them into self-knowledge.
+1. You write your dream  
+2. DreamDecode stores it in your private journal  
+3. AI analyzes emotions, symbols and narrative  
+4. You receive psychological insights and summaries  
+5. Over time, you see patterns and trends  
 
-🎯 Why dreams matter
+This turns dreaming into **self-reflection and mental clarity**.
 
-Dreams encode:
+---
 
-stress
+## ✨ Core Features
 
-fears
+- 🌙 Dream journal with history  
+- 🧠 AI-powered dream interpretation  
+- 📊 Analytics & dream statistics  
+- 🔮 Pattern detection over time  
+- 🎨 Dark, night-themed UI  
+- ⚡ Fast modern web app  
 
-desires
+---
 
-unresolved problems
+## 🛠 Tech Stack
 
-creativity
+- **Next.js 14 (App Router, TypeScript)**  
+- **Prisma ORM**  
+- **NeonDB (PostgreSQL)**  
+- **Tailwind CSS**  
+- **Framer Motion**  
+- **OpenRouter API (LLMs)**  
 
-DreamDecode helps you decode these signals using modern NLP and AI.
+---
 
-🧩 How it works
+## ⚙️ Setup
 
-You write or save a dream
-
-AI analyzes the text
-
-The system extracts:
-
-emotions
-
-symbols
-
-themes
-
-possible meanings
-
-You get a clear, structured interpretation
-
-🖥 Product features
-
-Dream journal with dark “night mode” UI
-
-AI dream analysis
-
-Emotional and symbolic pattern tracking
-
-Dream analytics dashboard
-
-SaaS-style architecture
-
-Secure database storage
-
-🛠 Technology stack
-
-Next.js (TypeScript, App Router)
-
-Prisma ORM
-
-NeonDB (PostgreSQL)
-
-Tailwind CSS
-
-Framer Motion
-
-React Icons
-
-OpenRouter API
-
-⚙️ Quick start
-1) Install dependencies
+### 1) Install dependencies
+```bash
 npm install
 
 2) Environment variables
 
-Create .env from .env.example and fill:
+Create .env from .env.example:
 
-DATABASE_URL — pooled connection string from Neon
+DATABASE_URL=...
+DIRECT_URL=...
+OPENROUTER_API_KEY=...
 
-DIRECT_URL — direct connection string for migrations
-
-OPENROUTER_API_KEY — OpenRouter API key
-
-Copy-Item .env.example .env
-
-3) Migrations & seed
+3) Database
 npx prisma migrate dev --name init
 npm run db:seed
 
@@ -110,25 +78,9 @@ npm run db:seed
 npm run dev
 
 
-Open:
+Open: http://localhost:3000
 
-http://localhost:3000
-
-🚀 Deploy to Vercel
-
-Add DATABASE_URL, DIRECT_URL, OPENROUTER_API_KEY in Vercel
-
-Apply migrations:
-
-npm run db:migrate
-
-🛠 Useful commands
-
-npm run db:migrate — apply migrations in production
-
-npm run db:seed — seed test data
-
-📦 Project structure
+📂 Project Structure
 src/
   app/
     page.tsx
@@ -137,33 +89,38 @@ src/
     analytics/page.tsx
     api/analyze/route.ts
   components/
-    ui/
-    dreams/
-    analytics/
-    layout/
   lib/
-    prisma.ts
-    ai.ts
-    dreams.ts
   actions/
-    dreams.ts
-  types/
-    index.ts
+  prisma/
 
-🔍 Where to find the core logic
+🧩 Key Files
 
-prisma/schema.prisma — database schema
+prisma/schema.prisma — Database schema
 
-prisma/migrations — migrations
-
-prisma/seed.js — test data
+src/app/api/analyze/route.ts — AI analysis
 
 src/actions/dreams.ts — Server Actions
 
-src/app/api/analyze/route.ts — OpenRouter AI analysis
+src/app/page.tsx — Dashboard
 
-src/app/page.tsx — main dashboard
+🎯 Who is this for?
 
-🔮 Vision
+DreamDecode is for people who:
 
-DreamDecode aims to become a personal subconscious dashboard — a place where dreams, emotions and inner patterns are understood, tracked and visualized by AI.
+Want to understand their subconscious
+
+Care about mental health
+
+Use journaling and self-reflection
+
+Love AI-powered tools
+
+⚠️ Disclaimer
+
+This is an experimental AI product.
+Not intended for medical or psychological diagnosis.
+
+👨‍💻 Author
+
+Built by evksin
+Telecommunications engineer & AI-focused developer
