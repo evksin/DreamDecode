@@ -1,3 +1,9 @@
+<p align="center">
+  <a href="https://dream-decode.vercel.app " target="_blank">
+    <img src="https://img.shields.io/badge/Try%20DreamDecode-Live%20Demo-purple?style=for-the-badge"/>
+  </a>
+</p>
+
 # DreamDecode 🌙✨  
 AI-powered dream journal & analysis platform
 
