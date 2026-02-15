@@ -1,69 +1,134 @@
-# DreamDecode — дневник снов с AI анализом
+🌙 DreamDecode
 
-Полный проект на Next.js (App Router) + Prisma + NeonDB с тёмной ночной темой, аналитикой и AI анализом снов.
+AI-powered Dream & Subconscious Analysis Platform
 
-## Стек
+DreamDecode is a web application that helps people record, analyze and understand their dreams using artificial intelligence.
 
-- Next.js (TypeScript, App Router)
-- Prisma ORM
-- NeonDB (PostgreSQL)
-- Tailwind CSS
-- Framer Motion
-- React Icons
-- OpenRouter API
+Your dreams are data — DreamDecode turns them into insight.
 
-## Быстрый старт
+🧠 What is DreamDecode?
 
-### 1) Установка зависимостей
+DreamDecode is a dream journal with built-in AI analysis.
 
-```powershell
+It allows you to:
+
+write down your dreams
+
+track emotional and symbolic patterns
+
+receive AI-generated psychological interpretations
+
+explore what your subconscious is trying to tell you
+
+Instead of just storing dreams, DreamDecode turns them into self-knowledge.
+
+🎯 Why dreams matter
+
+Dreams encode:
+
+stress
+
+fears
+
+desires
+
+unresolved problems
+
+creativity
+
+DreamDecode helps you decode these signals using modern NLP and AI.
+
+🧩 How it works
+
+You write or save a dream
+
+AI analyzes the text
+
+The system extracts:
+
+emotions
+
+symbols
+
+themes
+
+possible meanings
+
+You get a clear, structured interpretation
+
+🖥 Product features
+
+Dream journal with dark “night mode” UI
+
+AI dream analysis
+
+Emotional and symbolic pattern tracking
+
+Dream analytics dashboard
+
+SaaS-style architecture
+
+Secure database storage
+
+🛠 Technology stack
+
+Next.js (TypeScript, App Router)
+
+Prisma ORM
+
+NeonDB (PostgreSQL)
+
+Tailwind CSS
+
+Framer Motion
+
+React Icons
+
+OpenRouter API
+
+⚙️ Quick start
+1) Install dependencies
 npm install
-```
 
-### 2) Переменные окружения
+2) Environment variables
 
-Создайте `.env` на основе `.env.example` и заполните:
+Create .env from .env.example and fill:
 
-- `DATABASE_URL` — pooled connection string из Neon
-- `DIRECT_URL` — direct connection string для миграций
-- `OPENROUTER_API_KEY` — ключ OpenRouter
+DATABASE_URL — pooled connection string from Neon
 
-```powershell
+DIRECT_URL — direct connection string for migrations
+
+OPENROUTER_API_KEY — OpenRouter API key
+
 Copy-Item .env.example .env
-```
 
-### 3) Миграции и seed
-
-```powershell
+3) Migrations & seed
 npx prisma migrate dev --name init
 npm run db:seed
-```
 
-### 4) Запуск
-
-```powershell
+4) Run
 npm run dev
-```
 
-Откройте `http://localhost:3000`.
 
-## Деплой на Vercel
+Open:
 
-1) Добавьте `DATABASE_URL`, `DIRECT_URL`, `OPENROUTER_API_KEY` в Vercel.
-2) Примените миграции:
+http://localhost:3000
 
-```powershell
+🚀 Deploy to Vercel
+
+Add DATABASE_URL, DIRECT_URL, OPENROUTER_API_KEY in Vercel
+
+Apply migrations:
+
 npm run db:migrate
-```
 
-## Полезные команды
+🛠 Useful commands
 
-- `npm run db:migrate` — применить миграции в проде.
-- `npm run db:seed` — заполнить БД тестовыми данными.
+npm run db:migrate — apply migrations in production
 
-## Структура
+npm run db:seed — seed test data
 
-```
+📦 Project structure
 src/
   app/
     page.tsx
@@ -84,13 +149,21 @@ src/
     dreams.ts
   types/
     index.ts
-```
 
-## Где смотреть код
+🔍 Where to find the core logic
 
-- `prisma/schema.prisma` — схема Prisma.
-- `prisma/migrations` — миграции.
-- `prisma/seed.js` — тестовые данные.
-- `src/actions/dreams.ts` — Server Actions.
-- `src/app/api/analyze/route.ts` — OpenRouter анализ.
-- `src/app/page.tsx` — дашборд.
+prisma/schema.prisma — database schema
+
+prisma/migrations — migrations
+
+prisma/seed.js — test data
+
+src/actions/dreams.ts — Server Actions
+
+src/app/api/analyze/route.ts — OpenRouter AI analysis
+
+src/app/page.tsx — main dashboard
+
+🔮 Vision
+
+DreamDecode aims to become a personal subconscious dashboard — a place where dreams, emotions and inner patterns are understood, tracked and visualized by AI.
